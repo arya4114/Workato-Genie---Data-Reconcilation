@@ -185,9 +185,9 @@ Each question automatically triggers full cross-table reconciliation.
 Data inconsistencies in financial workflows introduce risk, delays, and operational friction. This reconciliation analyst provides:
 
 → Strict data accuracy
-
 → Automated cross-table validation
 → Risk visibility
+
 → Actionable remediation insights
 → Controlled, transparent reporting
 
