@@ -1,0 +1,118 @@
+{
+  "name": "Purchase_Order",
+  "schema": [
+    {
+      "id": "11fbe9a6-a16d-4d7e-86ea-afe42ec03005",
+      "title": "Record ID",
+      "type": "short-text",
+      "read_only": true,
+      "hidden": true
+    },
+    {
+      "id": "a5612739-5401-4ae7-bd07-782c1a6fb2d1",
+      "title": "Created time",
+      "type": "date-time",
+      "read_only": true,
+      "hidden": true
+    },
+    {
+      "id": "61aae604-a95e-4519-9091-bb0bf754a67f",
+      "title": "Last modified time",
+      "type": "date-time",
+      "read_only": true,
+      "hidden": true
+    },
+    {
+      "id": "3a463b44-70ce-4cec-8a9e-9041e08b530e",
+      "title": "Vendor ID",
+      "type": "integer",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "1b67b134-d65e-497c-87df-55f6d3f8277a",
+      "title": "PO_ID",
+      "type": "integer",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "297c3b2e-e609-43bf-8fd9-bbf46dfce535",
+      "title": "Name",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "7638c022-5597-4a72-b722-43847fb8f70e",
+      "title": "Department ID",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "hint": "Department ID from Department data table",
+      "metadata": {
+      }
+    },
+    {
+      "id": "c29ee6a8-ff04-47b7-a6c2-0d9f23efc34f",
+      "title": "Payment Status",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "3db0f913-e174-4cfd-9d3c-09cb9cd70044",
+      "title": "Currency",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "fb6bab5c-f2ff-4f5b-8d08-4fe0399cdddf",
+      "title": "Amount",
+      "type": "integer",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "ef887e30-d092-4810-a484-68c760bba2fc",
+      "title": "phone number",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "a8f9be29-e3c2-4e73-97fa-d4dc81754d34",
+      "title": "Date",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    }
+  ],
+  "project_name": "DataRec Genie POC - Coinbase"
+}

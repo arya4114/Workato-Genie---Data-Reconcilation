@@ -1,0 +1,14 @@
+{
+  "name": "skill4_UpdateRecords",
+  "trigger_description": "run this skill when user asks to update record or records in purchase order table.",
+  "references": {
+    "recipe_id": {
+      "type": "recipe",
+      "id": {
+        "zip_name": "DataRec Genie POC - Coinbase/skill4_updaterecords.recipe.json",
+        "name": "skill4_UpdateRecords",
+        "folder": "DataRec Genie POC - Coinbase"
+      }
+    }
+  }
+}

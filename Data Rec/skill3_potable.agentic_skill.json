@@ -1,0 +1,14 @@
+{
+  "name": "skill3_POTable",
+  "trigger_description": "run this skill when user asks to read / compare records from the purchase order table.",
+  "references": {
+    "recipe_id": {
+      "type": "recipe",
+      "id": {
+        "zip_name": "DataRec Genie POC - Coinbase/skill3_potable.recipe.json",
+        "name": "skill3_POTable",
+        "folder": "DataRec Genie POC - Coinbase"
+      }
+    }
+  }
+}

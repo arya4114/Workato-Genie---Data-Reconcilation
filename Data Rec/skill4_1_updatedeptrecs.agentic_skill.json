@@ -1,0 +1,14 @@
+{
+  "name": "skill4.1_UpdateDeptRecs",
+  "trigger_description": "run this genie when user asks to update the table.",
+  "references": {
+    "recipe_id": {
+      "type": "recipe",
+      "id": {
+        "zip_name": "DataRec Genie POC - Coinbase/skill4_1_updatedeptrecs.recipe.json",
+        "name": "skill4.1_UpdateDeptRecs",
+        "folder": "DataRec Genie POC - Coinbase"
+      }
+    }
+  }
+}

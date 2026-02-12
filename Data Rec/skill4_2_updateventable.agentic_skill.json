@@ -1,0 +1,14 @@
+{
+  "name": "skill4.2_UpdateVenTable",
+  "trigger_description": "run this genie when user asks to update the table.",
+  "references": {
+    "recipe_id": {
+      "type": "recipe",
+      "id": {
+        "zip_name": "DataRec Genie POC - Coinbase/skill4_2_updateventable.recipe.json",
+        "name": "skill4.2_UpdateVenTable",
+        "folder": "DataRec Genie POC - Coinbase"
+      }
+    }
+  }
+}

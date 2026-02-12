@@ -1,0 +1,374 @@
+{
+  "name": "Update NetSuite data to Datatable",
+  "description": "",
+  "version": 11,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "637d508a",
+    "keyword": "trigger",
+    "input": {
+      "time_unit": "minutes",
+      "trigger_every": "5"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "minutes"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "csv_parser",
+        "name": "parse_csv",
+        "as": "cdfd6053",
+        "keyword": "action",
+        "input": {
+          "col_sep": ",",
+          "skip_first_line": "true",
+          "column_value_by": "index",
+          "quote_char": "\"",
+          "csv_content": "Internal ID,Name,Status,Primary Subsidiary,Primary Contact,Phone,Email\n12,BH Outsourced Manufacturer,Active,Parent Subsidiary,Smith Roy,1 (214) 681-1134,bhoutsourced@bh.com\n10,Bloomqo Corp.,Active,Parent Subsidiary : Child,Angelo Smith,1 (700) 681-1214,info@Bloomqocorp.com\n13,Bobbi Brown,Active,Parent Subsidiary : Child,Charles Ryan,1 (700) 680-4169,manchandavikas007@gmail.com\n9,Inventory Warehouse Inc. - US Wsst,Active,Parent Subsidiary : Child,Garrison Clemons,1 (494) 522-8657,info@inventorywarehouseincuswsst.com\n6,Tech IC Vendor,Inactive,Parent Subsidiary,Shekher B.,1 (494) 522-8000,techsupporttc@TechIC1.com\n11,Google,Active,Parent Subsidiary,Lisa Carls,1 (494) 888-8434,alphabetsupport@google1.com\n8,Freshworks,Active,Child Subsidiary,Sanad Jain,1(534) 124-8745,sanadj@freshworks1.com\n7,Okta,Active,Parent Subsidiary,Scott M.,1(357) 246-4563,scottm@okat.com\n5,Guidewire,Active,Parent Subsidiary,Mitchel Bare,1(367) 467-2648,mitchelb@guidewier.com\n4,Coinbase,Active,Parent Subsidiary,Rayn Ford,1(234) 234-5790,raynford@coinbase1.com\n3,Jade,Active,Primary Subsidiary,Karan,1(214) 534-6120,jadenova@jade.com\n2,Shala Inc,Inactive,Primary Subsidiary,Mohak Meheta, 1(234) 558-6000,mohakM@shala.com",
+          "header_schema": "[{\"control_type\":\"text\",\"label\":\"Internal  ID\",\"type\":\"string\",\"name\":\"Internal ID\"},{\"control_type\":\"text\",\"label\":\"Name\",\"type\":\"string\",\"name\":\"Name\"},{\"control_type\":\"text\",\"label\":\"Status\",\"type\":\"string\",\"name\":\"Status\"},{\"control_type\":\"text\",\"label\":\"Primary  subsidiary\",\"type\":\"string\",\"name\":\"Primary Subsidiary\"},{\"control_type\":\"text\",\"label\":\"Primary  contact\",\"type\":\"string\",\"name\":\"Primary Contact\"},{\"control_type\":\"text\",\"label\":\"Phone\",\"type\":\"string\",\"name\":\"Phone\"},{\"control_type\":\"text\",\"label\":\"Email\",\"type\":\"string\",\"name\":\"Email\"}]"
+        },
+        "extended_output_schema": [
+          {
+            "label": "Lines",
+            "name": "lines",
+            "of": "object",
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Internal ID",
+                "type": "string",
+                "name": "column_0"
+              },
+              {
+                "control_type": "text",
+                "label": "Name",
+                "type": "string",
+                "name": "column_1"
+              },
+              {
+                "control_type": "text",
+                "label": "Status",
+                "type": "string",
+                "name": "column_2"
+              },
+              {
+                "control_type": "text",
+                "label": "Primary Subsidiary",
+                "type": "string",
+                "name": "column_3"
+              },
+              {
+                "control_type": "text",
+                "label": "Primary Contact",
+                "type": "string",
+                "name": "column_4"
+              },
+              {
+                "control_type": "text",
+                "label": "Phone",
+                "type": "string",
+                "name": "column_5"
+              },
+              {
+                "control_type": "text",
+                "label": "Email",
+                "type": "string",
+                "name": "column_6"
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "uuid": "27058212-4444-4bc1-9e85-9694712564af"
+      },
+      {
+        "number": 2,
+        "provider": "workato_db_table",
+        "name": "create_records_batch",
+        "as": "31a9bc83",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+          "table_id": "VendorTable_New"
+        },
+        "input": {
+          "table_id": {
+            "zip_name": "DataRec Genie POC - Coinbase/vendortable_new.workato_db_table.json",
+            "name": "VendorTable_New",
+            "folder": "DataRec Genie POC - Coinbase"
+          },
+          "records": {
+            "parameters": {
+              "66ccb5a2_3e14_4441_b93d_40424a6f5e4a": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"cdfd6053\",\"path\":[\"lines\",{\"path_element_type\":\"current_item\"},\"column_0\"]}')}",
+              "d02a3103_63bc_421d_8218_afc771d7dcbf": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"cdfd6053\",\"path\":[\"lines\",{\"path_element_type\":\"current_item\"},\"column_1\"]}')}",
+              "a9744441_88cc_4440_aba8_f50361125086": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"cdfd6053\",\"path\":[\"lines\",{\"path_element_type\":\"current_item\"},\"column_2\"]}')}",
+              "3670389b_a85a_4c19_b6e4_456a3b029315": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"cdfd6053\",\"path\":[\"lines\",{\"path_element_type\":\"current_item\"},\"column_3\"]}')}",
+              "91e99865_3de4_4a0f_bc44_389c6830dab6": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"cdfd6053\",\"path\":[\"lines\",{\"path_element_type\":\"current_item\"},\"column_4\"]}')}",
+              "2ab4c45f_0e65_495b_bf12_ba2ca57304de": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"cdfd6053\",\"path\":[\"lines\",{\"path_element_type\":\"current_item\"},\"column_5\"]}')}",
+              "1f59e5a1_857b_4348_a6e3_c4cb3a405b1a": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"cdfd6053\",\"path\":[\"lines\",{\"path_element_type\":\"current_item\"},\"column_6\"]}')}"
+            },
+            "____source": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"cdfd6053\",\"path\":[\"lines\"]}')}"
+          }
+        },
+        "extended_output_schema": [
+          {
+            "label": "Records",
+            "name": "records",
+            "of": "object",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "Record ID",
+                    "type": "string",
+                    "name": "11fbe9a6_a16d_4d7e_86ea_afe42ec03005"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "ID",
+                    "type": "string",
+                    "name": "66ccb5a2_3e14_4441_b93d_40424a6f5e4a"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Name",
+                    "type": "string",
+                    "name": "d02a3103_63bc_421d_8218_afc771d7dcbf"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Status",
+                    "type": "string",
+                    "name": "a9744441_88cc_4440_aba8_f50361125086"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Primary Subsidiary",
+                    "type": "string",
+                    "name": "3670389b_a85a_4c19_b6e4_456a3b029315"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Primary Contact",
+                    "type": "string",
+                    "name": "91e99865_3de4_4a0f_bc44_389c6830dab6"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Phone",
+                    "type": "string",
+                    "name": "2ab4c45f_0e65_495b_bf12_ba2ca57304de"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Email",
+                    "type": "string",
+                    "name": "1f59e5a1_857b_4348_a6e3_c4cb3a405b1a"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Vendor Bank Fees",
+                    "type": "string",
+                    "name": "ff015281_b5f1_4f04_8d0f_f1bb1e504786"
+                  },
+                  {
+                    "control_type": "date_time",
+                    "label": "Created at",
+                    "render_input": "date_time_conversion",
+                    "parse_output": "date_time_conversion",
+                    "type": "date_time",
+                    "name": "a5612739_5401_4ae7_bd07_782c1a6fb2d1"
+                  },
+                  {
+                    "control_type": "date_time",
+                    "label": "Updated at",
+                    "render_input": "date_time_conversion",
+                    "parse_output": "date_time_conversion",
+                    "type": "date_time",
+                    "name": "61aae604_a95e_4519_9091_bb0bf754a67f"
+                  }
+                ],
+                "label": "Record",
+                "type": "object",
+                "name": "record"
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "hint": "Provide the list of records",
+            "label": "New records",
+            "name": "records",
+            "of": "object",
+            "optional": false,
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "ID",
+                    "hint": "Vendor Id's",
+                    "optional": true,
+                    "sticky": true,
+                    "type": "string",
+                    "name": "66ccb5a2_3e14_4441_b93d_40424a6f5e4a"
+                  },
+                  {
+                    "control_type": "text-area",
+                    "label": "Name",
+                    "hint": "Vendor Name",
+                    "optional": true,
+                    "sticky": true,
+                    "type": "string",
+                    "name": "d02a3103_63bc_421d_8218_afc771d7dcbf"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Status",
+                    "hint": "Vendor status Active OR Inactive",
+                    "optional": true,
+                    "sticky": true,
+                    "type": "string",
+                    "name": "a9744441_88cc_4440_aba8_f50361125086"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Primary Subsidiary",
+                    "optional": true,
+                    "sticky": true,
+                    "type": "string",
+                    "name": "3670389b_a85a_4c19_b6e4_456a3b029315"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Primary Contact",
+                    "optional": true,
+                    "sticky": true,
+                    "type": "string",
+                    "name": "91e99865_3de4_4a0f_bc44_389c6830dab6"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Phone",
+                    "optional": true,
+                    "sticky": false,
+                    "type": "string",
+                    "name": "2ab4c45f_0e65_495b_bf12_ba2ca57304de"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Email",
+                    "optional": true,
+                    "sticky": false,
+                    "type": "string",
+                    "name": "1f59e5a1_857b_4348_a6e3_c4cb3a405b1a"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Vendor Bank Fees",
+                    "optional": true,
+                    "sticky": false,
+                    "type": "string",
+                    "name": "ff015281_b5f1_4f04_8d0f_f1bb1e504786"
+                  }
+                ],
+                "label": "New record fields",
+                "hint": "Fill the fields for the new record",
+                "type": "object",
+                "name": "parameters"
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "visible_config_fields": [
+          "table_id",
+          "records",
+          "records.parameters",
+          "records.parameters.19679171_9156_4a09_81ce_816e09476417",
+          "records.parameters.65f89c06_5add_4621_bfa2_19627cab8b4a",
+          "records.parameters.771e16bc_848e_442f_8c05_80c2b587993e",
+          "records.parameters.cbe7ffa3_d81e_4e14_a6cb_8e1464ce441a",
+          "records.parameters.30239144_f6b2_4a64_9131_09c5dae16311",
+          "records.parameters.70ce8e5a_550e_415d_b8a2_cabbc90b7845",
+          "records.parameters.54dda48a_7666_45b1_ad31_727ff498e21d",
+          "records.parameters.d3b3cb13_dfaa_41c5_abdb_6726ecc69070",
+          "records.parameters.66ccb5a2_3e14_4441_b93d_40424a6f5e4a",
+          "records.parameters.d02a3103_63bc_421d_8218_afc771d7dcbf",
+          "records.parameters.a9744441_88cc_4440_aba8_f50361125086",
+          "records.parameters.3670389b_a85a_4c19_b6e4_456a3b029315",
+          "records.parameters.91e99865_3de4_4a0f_bc44_389c6830dab6",
+          "records.parameters.ff015281_b5f1_4f04_8d0f_f1bb1e504786",
+          "records.parameters.1f59e5a1_857b_4348_a6e3_c4cb3a405b1a",
+          "records.parameters.2ab4c45f_0e65_495b_bf12_ba2ca57304de"
+        ],
+        "uuid": "17d3fb95-40af-4253-972e-76232a56b860"
+      }
+    ],
+    "uuid": "4c491f77-cdb5-4a45-ab3a-edb0873632b2"
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "workato_db_table",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "csv_parser",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}

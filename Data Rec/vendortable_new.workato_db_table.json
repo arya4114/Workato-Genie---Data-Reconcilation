@@ -1,0 +1,110 @@
+{
+  "name": "VendorTable_New",
+  "schema": [
+    {
+      "id": "11fbe9a6-a16d-4d7e-86ea-afe42ec03005",
+      "title": "Record ID",
+      "type": "short-text",
+      "read_only": true,
+      "hidden": true
+    },
+    {
+      "id": "a5612739-5401-4ae7-bd07-782c1a6fb2d1",
+      "title": "Created time",
+      "type": "date-time",
+      "read_only": true,
+      "hidden": true
+    },
+    {
+      "id": "61aae604-a95e-4519-9091-bb0bf754a67f",
+      "title": "Last modified time",
+      "type": "date-time",
+      "read_only": true,
+      "hidden": true
+    },
+    {
+      "id": "66ccb5a2-3e14-4441-b93d-40424a6f5e4a",
+      "title": "Vendor ID",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "hint": "Vendor Id's",
+      "metadata": {
+      }
+    },
+    {
+      "id": "d02a3103-63bc-421d-8218-afc771d7dcbf",
+      "title": "Name",
+      "type": "long-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "hint": "Vendor Name",
+      "metadata": {
+      }
+    },
+    {
+      "id": "a9744441-88cc-4440-aba8-f50361125086",
+      "title": "Status",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "hint": "Vendor status Active OR Inactive",
+      "metadata": {
+      }
+    },
+    {
+      "id": "3670389b-a85a-4c19-b6e4-456a3b029315",
+      "title": "Primary Subsidiary",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "91e99865-3de4-4a0f-bc44-389c6830dab6",
+      "title": "Primary Contact",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "2ab4c45f-0e65-495b-bf12-ba2ca57304de",
+      "title": "Phone",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "1f59e5a1-857b-4348-a6e3-c4cb3a405b1a",
+      "title": "Email",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    },
+    {
+      "id": "ff015281-b5f1-4f04-8d0f-f1bb1e504786",
+      "title": "Vendor Bank Fees",
+      "type": "short-text",
+      "read_only": false,
+      "hidden": false,
+      "required": false,
+      "metadata": {
+      }
+    }
+  ],
+  "project_name": "DataRec Genie POC - Coinbase"
+}

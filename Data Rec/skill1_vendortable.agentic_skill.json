@@ -1,0 +1,14 @@
+{
+  "name": "skill1_vendortable",
+  "trigger_description": "run this skill when user asks  to read /  compare records from vendor data table.",
+  "references": {
+    "recipe_id": {
+      "type": "recipe",
+      "id": {
+        "zip_name": "DataRec Genie POC - Coinbase/skill1_vendortable.recipe.json",
+        "name": "skill1_vendortable",
+        "folder": "DataRec Genie POC - Coinbase"
+      }
+    }
+  }
+}
