@@ -1,0 +1,8 @@
+{
+  "title": "Google Gemini",
+  "description": "[Google Gemini](https://ai.google.dev/gemini-api/docs/get-started/rest/) by Google.  It's designed to be multimodal, meaning it can understand and process information from various sources, including text, images, etc. This makes it a versatile tool for a wide range of tasks. There are different versions of Gemini available. Gemini 1.0 offered three sizes: Ultra, Pro, and Nano.\r\n\r\n## Examples of what can you do with this connector\r\n\r\n- Generate different creative text formats: Write poems, scripts, musical pieces, emails, letters, etc.\r\n- Can combine text and image data in your prompts. For instance, you could provide a description and an image to generate a corresponding news article.\r\n- Translate texts and generate emails\r\n\r\n## Support\r\n\r\nThis connector was built and is supported by Workato. Send all your bug reports through our support channels, found [here](https://docs.workato.com/contact-us.html#for-reporting-bugs). Let our support team know the name of this connector and that it was installed from the community so they can route your support tickets properly. To request enhancements, use the following [link](https://docs.workato.com/contact-us.html#for-requesting-enhancements) and select your region’s data center.",
+  "logo_file_name": "icon_(52).png",
+  "logo_content_type": "image/png",
+  "version_no": 1,
+  "note": "Installed from community"
+}
